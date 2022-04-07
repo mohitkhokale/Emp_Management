@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1></h1>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>DASHBOARD</h2>
+        <div class="row">
+            {% if request.user.is_staff %}
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <h3>TOTAL EMPLOYEE</h3>
+                        <p>{{count}}</p>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <h3>All User</h3>
+                        {% for assigned_user in assigned_user %}
+                        ID:{{assigned_user.id}}
+                        | Username: {{assigned_user.username}}<br>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h3>ASSIGNED USER ID'S</h3>
+                        {% for task_details in task_details %}
+                        {{task_details.admin_id}}
+                        {{task_details.date_of_submit}}
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h3>COMPLETED TASKS</h3>
+                        <p>Some text</p>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <h3>ASSIGNED TASKS</h3>
+                        <p><a href="{% url 'task' %}">View</a></p>
+
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <h3>OPEN TASKS</h3>
+                        <p>{{open_task}}</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h3>IN-PROGRESS TASKS</h3>
+                        <p>{{inprogress_task}}</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h3>COMPLETED TASKS</h3>
+                        <p>{{completed_task}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endblock %}

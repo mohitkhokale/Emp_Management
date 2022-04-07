@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> <center>UPDATE TASKS</center></h1>
+<form style="
+margin-left: 43%;
+" method="post">
+    {% csrf_token %}
+    {{form_class.as_p}}
+ 
+    <input type="submit" action="./task.html" value="submit">
+</form>
+{% endblock %}

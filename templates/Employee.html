@@ -1,0 +1,20 @@
+ {% extends 'base.html' %}
+    {% block content %} 
+    {% if request.user.is_authenticated %}                   
+    <div class="container">
+        <div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if request.user.is_staff %}
+       
+        {{forms.as_p}}
+        <input type="submit" value="Submit" name="Submit">
+   
+        {% endif %}
+</form>
+</div>
+</div>
+{% else %}
+<h1> Kindly login <a href="{% url 'homepage' %}">Click Here</a> </h1>
+{% endif %}
+ {% endblock %}

@@ -1,0 +1,31 @@
+#Employee
+
+first_name = CharField(max_length=255)
+last_name = CharField(max_length=255)
+deptartment = CharField(max_length=255)
+status = BooleanField(default= False)
+mobile = CharField(max_length=255)
+email = EmailField(max_length=255)
+joining_date = DateField(max_length=255)
+post = (
+    ('Manager','Manager'),
+    ('Employee', 'Employee'),
+)
+designation = models.CharField(max_length=6, choices=post, default='green')
+
+#Tasks
+Employee = ForeignKey("Employee",ondelete=CASCADE,related_name="Employee")
+title = CharField(max_length=255)
+task_status = (
+    ('open', 'open')
+    ('In-Progress', 'In-Progress')
+    ('Closed', 'Closed')
+)
+status = CharField(max_length=25,choices=task_status,default='open')
+created_at = DateField()
+
+
+1) admin login / user login 
+
+    admin: dashboard 
+    user: Task View

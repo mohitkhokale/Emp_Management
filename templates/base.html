@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+  body {
+    margin:0
+  }
+  .container {
+  margin: 20px 16px;
+}
+#header-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+.errorlist.nonfield{
+  display: flex
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+ul.errorlist {display:none;}
+
+body > div > div > form > ul:nth-child(10){
+  width: 40%;
+    display: flow-root;
+    margin:auto;
+}
+li a:hover {
+  background-color: #111;
+}
+ 
+</style>
+<ul id="header-bar">
+  {% if request.user.is_authenticated %}                   
+    <li><a class="active" href="{% url 'dashboard' %}">Home</a></li>
+    {% if request.user.is_staff %}
+    <li><a class="active" href="{% url 'Employee' %}">Create Employee</a></li>
+    {% else %}
+    <li><a class="active" href="{% url 'task' %}">View Task</a></li>
+    {% endif %}
+    <li><a class="active" href="{% url 'logout' %}">Logout</a></li>
+    <li> <a class="active"> WELCOME, {{request.user}}</a></li>
+    {% endif %}
+  </ul>
+</head>
+<body>
+{% block content %}
+
+{% endblock %}
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<style type="text/css">
+    body {
+        text-align: center;
+        
+    }
+
+    .tg {
+        margin: 0 auto;
+    }
+
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .tg td {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+
+    .tg th {
+        border-color: black;
+        border-style: solid;
+        border-width: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        font-weight: normal;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+
+    .tg .tg-0pky {
+        border-color: inherit;
+        text-align: left;
+        vertical-align: top
+    }
+
+    .tg .tg-0lax {
+        text-align: left;
+        vertical-align: top
+    }
+    a{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        align-items: center;
+    }
+    
+</style>
+<h1>TASK LIST</h1>
+<form id="task_form" method='get'>
+    <table class="tg">
+        <thead>
+            <tr>
+                <th class="tg-0pky">PROJECT CODE</th>
+                <th class="tg-0pky">TITLE</th>
+                <th class="tg-0pky">STATUS</th>
+                <th class="tg-0pky">CREATED AT</th>
+                <th class="tg-0pky">DATE OF SUBMISSION</th>
+                <th class="tg-0pky">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in form %}
+            <tr>
+
+                <td class="tg-0pky">Vasu_{{data.title}}_{{data.id}}</td>
+                <td class="tg-0pky">{{data.title}}</td>
+                <td class="tg-0pky">{{data.task_status}}</td>
+                <td class="tg-0pky">{{data.created_at}}</td>
+                <td class="tg-0pky">{{data.date_of_submit}}</td>
+                <td class="tg-0pky"><button type="submit"><a
+                            href="{% url 'update_task' data.id %}">EDIT</a></button></td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</form>
+{% endblock %}
